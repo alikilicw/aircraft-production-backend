@@ -1,20 +1,21 @@
 from rest_framework.permissions import BasePermission
-from .models import Personnel
+from .services import UserService
 
-class IsInTeam(BasePermission):
+class IsPersonnel(BasePermission):
     """
     Allows access only to personnels who belong to a specific team.
     """
 
-    def __init__(self, team_name):
+    user_service = UserService()
+
+    def __init__(self, team_name=None):
         self.team_name = team_name
 
     def has_permission(self, request, view):
-        try:
-            # Get the personnel (team info is stored here)
-            personnel = Personnel.objects.get(user=request.user)
-        except Personnel.DoesNotExist:
-            return False  # If no personnel exists, deny access
+        if request.user:
+            team = self.user_service.get_team(request.user)
+            if team:
+                request.team = team
+                return True
 
-        # Check if the personnel's team matches the required team name
-        return personnel.team.name == self.team_name
+        return False

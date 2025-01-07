@@ -21,6 +21,7 @@ class PartModel(models.Model):
 class Part(models.Model):
     serial_number = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     model = models.ForeignKey(PartModel, on_delete=models.CASCADE)
+    is_assembled = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.model.name} - {self.model.compatible_aircraft} - {self.serial_number}'
