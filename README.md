@@ -14,6 +14,8 @@ Thanks to this backend project, we can do these actions:
   - Finally, complete the aircraft production.
 - The produced aircraft will be listable.
 
+##### _Postman collection can be used by importing Aircraft Production.postman_collection file located in backend folder._
+
 ---
 
 ## Features

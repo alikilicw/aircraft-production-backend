@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "214061ca-35ae-4c19-9e50-1aadd9ccea5d",
+		"name": "Aircraft Production",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20274253"
+	},
+	"item": [
+		{
+			"name": "Parts",
+			"item": [
+				{
+					"name": "Get Parts In Stock",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 3bca284c5e191d7a2ee9b6bb383b5b997a157003",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/parts",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"parts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produce a Part",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token b451a5cf59b4d5496863fecd76159e7ebb1962d0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model_id\": 19\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/parts/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"parts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Part By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token b451a5cf59b4d5496863fecd76159e7ebb1962d0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/parts/12",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"parts",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recycle a Part",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token b451a5cf59b4d5496863fecd76159e7ebb1962d0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/parts/12/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"parts",
+								"12",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assembly a Part",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 3bca284c5e191d7a2ee9b6bb383b5b997a157003",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aircraft_id\": 2,\r\n    \"part_id\": 42\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/parts/assembly/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"parts",
+								"assembly",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Assemblies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 3bca284c5e191d7a2ee9b6bb383b5b997a157003",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aircraft_id\": 1,\r\n    \"part_id\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/parts/assembly/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"parts",
+								"assembly",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Part Models",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 3bca284c5e191d7a2ee9b6bb383b5b997a157003",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/parts/part-models",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"parts",
+								"part-models"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aircrafts",
+			"item": [
+				{
+					"name": "Create Aircraft",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 3bca284c5e191d7a2ee9b6bb383b5b997a157003",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model_id\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/aircrafts/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"aircrafts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Aircrafts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 3bca284c5e191d7a2ee9b6bb383b5b997a157003",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/aircrafts/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"aircrafts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Production",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 3bca284c5e191d7a2ee9b6bb383b5b997a157003",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/aircrafts/1/complete-production/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"aircrafts",
+								"1",
+								"complete-production",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Aircraft Models",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/aircrafts/aircraft-models",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"aircrafts",
+								"aircraft-models"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"personnel1\",\r\n    \"password\": \"personnel1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://134.209.118.95:8001/api/v1/users/login/",
+					"protocol": "http",
+					"host": [
+						"134",
+						"209",
+						"118",
+						"95"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.environment.set(\"api\",\"http://localhost:8000/api/v1\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
