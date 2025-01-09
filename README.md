@@ -4,6 +4,16 @@
 
 This project is a Django-based web application that provides a RESTful API using Django Rest Framework (DRF). It implements token-based authentication with `authtoken` and uses PostgreSQL as its database backend.
 
+Thanks to this backend project, we can do these actions:
+
+- Each team will be able to produce the parts they are responsible for.
+- Teams will be able to view the parts they have produced.
+- The Assembly team will be able to produce an aircraft:
+  - First, create an aircraft.
+  - Then, assemble the parts into the aircraft.
+  - Finally, complete the aircraft production.
+- The produced aircraft will be listable.
+
 ---
 
 ## Features

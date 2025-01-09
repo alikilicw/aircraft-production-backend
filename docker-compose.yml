@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  drf_container:
+    build:
+      context: .
+    container_name: drf_container
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres_container
+    networks:
+      - app_network
+
+  postgres_container:
+    container_name: postgres_container
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - ./aircraft_production:/docker-entrypoint-initdb.d/dump.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: aircraft_production
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    external: true

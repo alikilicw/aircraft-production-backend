@@ -3,10 +3,9 @@ from .models import AircraftModel
 from django.apps import apps
 
 # Serializer for the AircraftModel model
-class AircraftModelSeralizer(serializers.ModelSerializer):
-    class Meta:
-        model = AircraftModel
-        fields = ['id', 'name']
+class AircraftModelSeralizer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    name = serializers.CharField(read_only=True)
 
 # Serializer for the Aircraft model
 class AircraftSerializer(serializers.Serializer):

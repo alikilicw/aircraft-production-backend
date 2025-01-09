@@ -6,11 +6,22 @@ from rest_framework.exceptions import ValidationError
 from rest_framework import status
 from rest_framework.response import Response
 
-from .serializers import AircraftSerializer
+from .serializers import AircraftSerializer, AircraftModelSeralizer
 from .models import AircraftModel, Aircraft
 
 from users.permissions import IsPersonnel
 from users.models import TeamSlugEnum
+
+class AircraftModelAPIView(APIView):
+    serializer_class = AircraftModelSeralizer
+
+    def get(self, request):
+        aircraft_models = AircraftModel.objects.all()
+        serializer = self.serializer_class(aircraft_models, many=True)
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
 
 
 # API view for managing aircrafts

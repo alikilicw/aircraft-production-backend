@@ -1,11 +1,22 @@
 from rest_framework import serializers
-from .models import PartModel
+from .models import PartModel, PartStock
 from aircrafts.serializers import AircraftModelSeralizer, AircraftSerializer
 
 # Serializer for PartModel
 class PartModelSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
     name = serializers.CharField()
     compatible_aircraft = AircraftModelSeralizer()
+    stock = serializers.SerializerMethodField()
+
+    def get_stock(self, obj):
+        # get stock from PartStock
+        try:
+            part_stock = PartStock.objects.get(part_model=obj)
+            return part_stock.stock
+        except PartStock.DoesNotExist:
+            return 0
+
 
 # Serializer for Part
 class PartSerializer(serializers.Serializer):

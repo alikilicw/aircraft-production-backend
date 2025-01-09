@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.db import transaction, IntegrityError
+from django.db import transaction
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -7,12 +7,24 @@ from rest_framework.views import APIView
 from rest_framework.exceptions import ValidationError
 
 from .models import Part, PartStock, PartModel, Assembly
-from .serializers import PartSerializer, AssemblySerializer
+from .serializers import PartSerializer, AssemblySerializer, PartModelSerializer
 
 from aircrafts.models import Aircraft
 
 from users.permissions import IsPersonnel
 from users.models import TeamSlugEnum
+
+
+class PartModelAPIView(APIView):
+    serializer_class = PartModelSerializer
+
+    def get(self, request):
+        partmodels = PartModel.objects.all()
+        serializer = self.serializer_class(partmodels, many=True)
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
 
 
 class PartAPIView(APIView):
@@ -22,13 +34,13 @@ class PartAPIView(APIView):
     def get(self, request):
         # Filter parts based on team and query parameters
         parts = Part.objects.filter(in_stock=True)
-        if request.team \
-            and request.team.slug != TeamSlugEnum.ASSEMBLY:
-            team_model = get_object_or_404(PartModel, team=request.team)
-            parts = parts.filter(model=team_model)
+        # if request.team \
+        #     and request.team.slug != TeamSlugEnum.ASSEMBLY:
+        #     team_models = PartModel.objects.filter(team=request.team)
+        #     parts = parts.filter(model__in=team_models)
 
         serial_number = request.query_params.get('serial_number', None)
-        model_id = request.query_params.get('model', None)
+        model_id = request.query_params.get('model_id', None)
 
         if serial_number:
             parts = parts.filter(serial_number=serial_number)
